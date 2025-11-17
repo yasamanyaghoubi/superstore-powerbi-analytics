@@ -120,6 +120,3 @@ The goal is to deliver a production-ready analytics framework that can be extend
 |-- /Documentation            # Insight summaries & business notes
 |-- README.md                 # Project overview
 ```
-
-
-Just tell me!
