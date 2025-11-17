@@ -1,70 +1,125 @@
-# superstore-powerbi-analytics
-A complete Power BI analytics project using the Superstore dataset, including data cleaning, DAX measures, dashboard design, sales insights, profitability analysis, customer behavior metrics, and documented business takeaways.
+# 📊 Superstore Power BI Analytics
 
-This project presents a full end-to-end Power BI analysis of the Sample Superstore dataset. It includes data cleaning, modeling, DAX measure creation, and visualization of key metrics such as sales trends, profitability, regional performance, customer segmentation, and repeat-buyer behavior. The repository contains dashboards, documentation, and insight summaries designed for business stakeholders and data teams.
+**End-to-End Business Intelligence Project using the Sample Superstore Dataset**
 
-Data sources & schema
+This repository contains a complete Power BI analytics solution built on the Sample Superstore dataset. It includes data cleaning, modeling, DAX measure development, and dynamic dashboards that highlight sales performance, profitability, customer behavior, and product insights. The project is designed for both business stakeholders and data teams seeking actionable retail and operations intelligence.
 
-Source file: Sample - Superstore (order-level).
+---
 
-Key fields: Order ID, Order Date, Customer ID, Sales, Profit, Discount, Quantity, Product ID, Category, Sub-Category, Region, State, City.
+## 📁 Project Overview
 
-Assumptions: shipping cost not included unless present; discounts are applied at order-line level; each row = one product line.
+This end-to-end BI project covers:
 
-Transformations
+* Data preparation & normalization
+* Dimensional modeling
+* Creation of essential DAX measures
+* Interactive dashboards for Sales, Profitability, Customer Analytics, and SKU Performance
+* Insight summaries & actionable business recommendations
 
-Normalized orders so each row is one product-line.
+The goal is to deliver a production-ready analytics framework that can be extended with additional business data.
 
-Created Date dimension and derived Year/Quarter/Month keys.
+---
 
-Computed Profit Margin per row.
+## 📂 Data Sources & Schema
 
-Marked Repeat Customer based on distinct order counts per customer.
+**Primary Source File:** *Sample - Superstore* (order-level granularity)
 
-Removed or imputed rows where Sales or Order Date missing.
+**Key Fields Include:**
 
-Measures & KPIs (definition)
+* **Order-Level:** Order ID, Order Date, Ship Date, Customer ID
+* **Financials:** Sales, Profit, Discount, Quantity
+* **Product:** Product ID, Category, Sub-Category
+* **Geography:** Region, State, City
 
-Total Sales — sum of Sales.
+**Assumptions:**
 
-Total Profit — sum of Profit.
+* Shipping cost excluded unless provided
+* Discounts applied at the order-line level
+* Each row represents one product line
 
-Profit Margin % — Total Profit / Total Sales.
+---
 
-AOV — Average Order Value = Total Sales / distinct orders.
+## 🔧 Transformations & Data Modeling
 
-Repeat Purchase Rate — % of customers with >1 order.
+* Normalized orders ensuring **1 row = 1 product line**
+* Built a **Date Dimension** with Year/Quarter/Month derived keys
+* Calculated **Profit Margin** at the row level
+* Identified **Repeat Customers** via distinct order counts
+* Removed or imputed rows with missing Sales or Order Date
+* Built relationships using a **star schema** (Fact Orders + Dimensions)
 
-YoY Sales % — growth vs same period previous year.
+---
 
-Analytical steps performed
+## 📐 DAX Measures & KPI Definitions
 
-Calculated baseline KPIs for most recent period and comparable prior period.
+| KPI                           | Definition                                          |
+| ----------------------------- | --------------------------------------------------- |
+| **Total Sales**               | `SUM(Sales)`                                        |
+| **Total Profit**              | `SUM(Profit)`                                       |
+| **Profit Margin %**           | `Total Profit / Total Sales`                        |
+| **Average Order Value (AOV)** | `Total Sales / DISTINCTCOUNT(Order ID)`             |
+| **Repeat Purchase Rate**      | Customers with >1 order / total customers           |
+| **YoY Sales %**               | Growth compared to same period in the previous year |
 
-Identified top 10 SKUs by sales and by profit.
+---
 
-Segment analysis: sales and margin by Region, Category and Segment (Consumer/Corporate/Home Office).
+## 🔎 Analytical Steps Performed
 
-Customer analysis: repeat vs new customers, AOV by customer cohort.
+### **1. Baseline KPIs & Time Intelligence**
 
-Product risk assessment: SKUs with high sales but low margin.
+* Calculated KPIs for recent periods vs prior periods
+* Built YoY and QoQ trend visuals
 
-Inventory recommendations: SKUs with high share of QoQ growth concentrated in specific regions flagged for top-up.
+### **2. Product & SKU Analysis**
 
-Limitations
+* Identified **Top 10 SKUs** by sales and profit
+* Flagged **high-sales, low-margin** products
+* Assessed SKU risk and profitability distribution
 
-Inventory on-hand not part of dataset (unless provided). Inventory recommendations are proxy-based (sales velocity).
+### **3. Customer Analytics**
 
-Customer LTV estimates will be limited to observed lifetime in dataset.
+* Segmented **new vs repeat** customers
+* Measured cohort AOV and contribution to sales
+* Analyzed buying patterns across customer segments
 
-Channel attribution depends on presence of Channel or Campaign fields.
+### **4. Regional & Category Segmentation**
 
-Suggested next steps
+* Sales and margin by **Region, Category, Sub-Category**, and **Customer Segment**
+* Detected geographic growth hotspots
 
-Add inventory-on-hand and lead time to compute explicit reorder points.
+### **5. Inventory Proxy Recommendations**
 
-Enrich customer data with acquisition channel for marketing ROI.
+* Identified SKUs showing rapid QoQ growth
+* Flagged items for possible **inventory top-up**
 
-Integrate returns / refunds data to refine net sales and margins.
+---
 
-Implement scheduled refresh and alerts for SKU stockouts and margin drops.
+## ⚠️ Limitations
+
+* **Inventory on-hand** data is not available → recommendations based on sales velocity only
+* **Customer LTV** limited to time period of dataset
+* **Marketing/channel attribution** requires additional fields
+* Return/refund data not included
+
+---
+
+## 🚀 Suggested Next Steps
+
+* Add inventory-on-hand & lead-time data to compute **reorder points**
+* Integrate acquisition channels for **marketing ROI**
+* Add returns/refunds to refine **net sales & margin**
+* Deploy scheduled refresh + alerts for SKU stockouts and margin drops
+
+---
+
+## 📘 Repository Contents
+
+```
+|-- /PowerBI_Dashboard        # .pbix files and report pages
+|-- /Data                     # Superstore dataset (if redistributable)
+|-- /Documentation            # Insight summaries & business notes
+|-- README.md                 # Project overview
+```
+
+
+Just tell me!
